@@ -35,7 +35,7 @@ class Filter:
                     print("\nI'm tired, but I did my job\n")
                 except UnicodeDecodeError:
                     print('\\ 0_0 /\n\ndanger word --> ' + str(line) + f'encoding error in {old_qty} line\n')
-                    response_on_error = input('would you like to specify a different encoding? y/n\n')
+                    response_on_error = input('would you like to specify a different encoding? y/n \n')
                     if response_on_error.lower() == 'y':
                         user_encoding = str(input("\ntype your encoding (example: 'latin-1') => "))
                         user_encoding = user_encoding.replace("'", '').replace('"', '')
