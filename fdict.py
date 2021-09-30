@@ -10,10 +10,10 @@ from fcore import Filter
 # алгоритм фильтрации таков: открывается словарь, создаётся дополнительный файл в родительском каталоге открытого файла
 # в этот дополнительный файл, строчкой за строчкой, помеющатся строки с указанной длинной символов.
 
-delimiter = '==========================='
+delimiter = '==================================='
 print('')
 print(delimiter)
-print("+========+RUNNING=========+")
+print("+=============RUNNING=============+")
 print(delimiter)
 
 file_path = ''
@@ -68,5 +68,6 @@ filter_core = Filter(origin_path=file_path, qty_symbols=qty_symbols)
 filter_core.run()
 
 print(delimiter)
-print('---> The end. Bye :)')
+print('---> The end. Bye :)\n')
+print("---> developer: 'Tukhtarov Dynamic'")
 print(delimiter)
