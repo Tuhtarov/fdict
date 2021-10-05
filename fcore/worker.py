@@ -26,6 +26,13 @@ class MainWorker(AbstractWorker):
     def append_filter(self, filter: AbstractFilter):
         self._filters.append(filter)
 
+    # is empty or nope
+    def is_ready(self):
+        if len(self._filters) > 0:
+            return True
+        else:
+            return False
+
     def run(self):
         with open(self._file, encoding=self._encode) as origin:
             with open(self._file_buffer, 'w+', encoding=self._encode) as buffer:
