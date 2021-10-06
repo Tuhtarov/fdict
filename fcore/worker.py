@@ -4,17 +4,46 @@ from fcore.filter import AbstractFilter
 
 
 class AbstractWorker:
+    _file: str
+    _encode: str
+    _file_name_origin: str
+    _file_buffer: str
+    _file_filtered: str
+    sep: str
+
     def __init__(self, file: str, encode: str):
-        self._file = file
         self._encode = encode
-        sep = os.sep
-        segments_origin_path = file.split(sep)
-        self._file_name_origin = segments_origin_path.pop()
-        self._file_buffer = sep.join(segments_origin_path) + sep + 'buffer_' + self._file_name_origin
-        self._file_filtered = sep.join(segments_origin_path) + sep + 'filtered_' + self._file_name_origin
+        self.sep = os.sep
+        self.__change_file_path(file)
 
     def run(self):
         pass
+
+    def __change_file_path(self, file: str):
+        self._file = file
+        segments_origin_path = file.split(self.sep)
+        self._file_name_origin = segments_origin_path.pop()
+        self._file_buffer = self.sep.join(segments_origin_path) + self.sep + 'buffer_' + self._file_name_origin
+        self._file_filtered = self.sep.join(segments_origin_path) + self.sep + 'filtered_' + self._file_name_origin
+
+    def change_file_path(self, file: str):
+        _file = file \
+            .removeprefix('"') \
+            .removeprefix("'") \
+            .removesuffix('"') \
+            .removesuffix("'")
+        if not os.path.exists(_file):
+            return False
+        if not os.path.isfile(_file):
+            return False
+        self.__change_file_path(_file)
+        return True
+
+    def get_file_name(self):
+        if self._file_name_origin:
+            return self._file_name_origin
+        else:
+            return None
 
 
 class MainWorker(AbstractWorker):

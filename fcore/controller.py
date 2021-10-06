@@ -1,5 +1,5 @@
 from os import path
-from fcore.worker import MainWorker
+from fcore.worker import *
 from fcore.functional import Functional
 from fcore.filter import MinSymbolFilter, MaxSymbolFilter
 
@@ -32,7 +32,7 @@ class Controller:
     def run(self):
         core = MainWorker(self._file_path, 'latin-1')
         self._functional = Functional(core)
-        core = self._functional.run()
+        core = self._functional.build_worker()
         core.run()
 
     # def get_digit(self):
