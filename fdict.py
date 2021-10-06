@@ -12,14 +12,12 @@ def get_file_path():
 
 
 controller = Controller()
+controller.set_file_path(get_file_path())
 
-# while not controller.file_is_available():
-#     print("please, type the correct path")
-#     controller.set_file_path(get_file_path())
-# else:
-#     print('ok.. file is correct!\n')
+while not controller.file_is_available():
+    print("please, type the correct path")
+    controller.set_file_path(get_file_path())
 
-controller.set_file_path(r'C:\Users\tukhtarov\Desktop\work\test.txt')
 controller.run()
 
 print(delimiter)

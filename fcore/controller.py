@@ -10,8 +10,13 @@ class Controller:
     _functional: Functional
 
     def set_file_path(self, file: str):
-        if self.check_file_path(file):
-            self._file_path = file
+        _file = file \
+                .removeprefix('"') \
+                .removeprefix("'") \
+                .removesuffix('"') \
+                .removesuffix("'")
+        if self.check_file_path(_file):
+            self._file_path = _file
             return True
         else:
             return False
